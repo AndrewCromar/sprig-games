@@ -1,6 +1,6 @@
 [Sprig Website](https://sprig.hackclub.com/)
 # Maze Filler
-> [SprigGames/maze_filler]()
+> [SprigGames/maze_filler](https://github.com/AndrewCromar/SprigGames/tree/9435fc5ea2a7808daece35893fb7a051af43da31/maze_filler)
 ### Description
 You are a square when you move you leave a trail behind you, the goal is to fill all the white space with your trail.
 ### Controlls
