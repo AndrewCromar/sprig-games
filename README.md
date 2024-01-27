@@ -1,4 +1,12 @@
 [Sprig Website](https://sprig.hackclub.com/)
+# Maze Filler
+> [SprigGames/maze_filler]()
+### Description
+You are a square when you move you leave a trail behind you, the goal is to fill all the white space with your trail.
+### Controlls
+* Move with WASD.
+* Select with L.
+* Back to level select with K.
 # Bone Hunt
 > [SprigGames/bone_hunt](https://github.com/AndrewCromar/SprigGames/tree/9f45b83f3cd621d5c6c789314e01d9ba6831b252/bone_hunt)
 ### Description
