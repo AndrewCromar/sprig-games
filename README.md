@@ -1,4 +1,12 @@
 [Sprig Website](https://sprig.hackclub.com/)
+# Packman [beta]
+> [SprigGames/packman](https://github.com/AndrewCromar/SprigGames/tree/1fd7355df5be6cd2da24c6fbb0ecb2a052a45982/packman)
+
+> work-in-progress
+### Description
+My version of packman for the sprig.
+### Controlls
+* Move with WASD.
 # Maze Filler
 > [SprigGames/maze_filler](https://github.com/AndrewCromar/SprigGames/tree/9435fc5ea2a7808daece35893fb7a051af43da31/maze_filler)
 ### Description
