@@ -8,18 +8,18 @@
 
 // SETUP CLASS
 class AnimatedSprite {
-  constructor(animations){
+  constructor(animations) {
     this.animations = animations;
     this.current_animation = animations[0];
   }
 
-  setAnimation(index){ this.current_animation = this.animations[index]; }
-  
-  getFrame(){ return this.current_animation.getFrame(); }
+  setAnimation(index) { this.current_animation = this.animations[index]; }
 
-  nextFrame(){ this.current_animation.nextFrame(); }
+  getFrame() { return this.current_animation.getFrame(); }
 
-  setFrame(new_frame){ this.current_animation.current_frame = new_frame; }
+  nextFrame() { this.current_animation.nextFrame(); }
+
+  setFrame(new_frame) { this.current_animation.current_frame = new_frame; }
 }
 
 class Animation {
@@ -32,28 +32,28 @@ class Animation {
     return this.frames[this.current_frame % this.frames.length];
   }
 
-  nextFrame() { 
-    this.current_frame = (this.current_frame + 1) % this.frames.length; 
+  nextFrame() {
+    this.current_frame = (this.current_frame + 1) % this.frames.length;
   }
 }
 
-class Ghost{
-  constructor(type){
+class Ghost {
+  constructor(type) {
     this.type = type;
     this.direction = 0;
   }
 
-  setTarget(target){
+  setTarget(target) {
     this.target = target;
   }
 
-  setDirection(direction){
+  setDirection(direction) {
     this.direction = direction;
   }
 }
 
-class Target{
-  constructor(x, y){
+class Target {
+  constructor(x, y) {
     this.x = x;
     this.y = y;
   }
@@ -542,7 +542,7 @@ const clyde_animator = new AnimatedSprite([clyde_animation, ghost_frightened, gh
 
 // ALL ANIMATORS
 
-const all_animators = [ packman_animator, blinky_animator, pinky_animator, inky_animator, clyde_animator ];
+const all_animators = [packman_animator, blinky_animator, pinky_animator, inky_animator, clyde_animator];
 
 // DEBUG TILE
 
@@ -550,9 +550,10 @@ var debug = ">";
 
 // Set legend by default
 CustomSetLegend();
-function CustomSetLegend(){
+
+function CustomSetLegend() {
   setLegend(
-    [ debug, bitmap `
+    [debug, bitmap `
 3333333333333333
 3333333333333333
 3333333333333333
@@ -568,11 +569,11 @@ function CustomSetLegend(){
 3333333333333333
 3333333333333333
 3333333333333333
-3333333333333333` ],
-    
-    [ packman, packman_animator.getFrame() ],
+3333333333333333`],
 
-    [ pellet, bitmap `
+    [packman, packman_animator.getFrame()],
+
+    [pellet, bitmap `
 ................
 ................
 ................
@@ -588,8 +589,8 @@ function CustomSetLegend(){
 ................
 ................
 ................
-................` ],
-    [ power_pellet, bitmap `
+................`],
+    [power_pellet, bitmap `
 ................
 ................
 ................
@@ -605,32 +606,32 @@ function CustomSetLegend(){
 ................
 ................
 ................
-................` ],
-    
-    [ background, bitmap `
-0000000000000000
-0000000000000000
-0000000000000000
-0000000000000000
-0000000000000000
-0000000000000000
-0000000000000000
-0000000000000000
-0000000000000000
-0000000000000000
-0000000000000000
-0000000000000000
-0000000000000000
-0000000000000000
-0000000000000000
-0000000000000000` ],
+................`],
 
-    [ blinky, blinky_animator.getFrame() ],
-    [ pinky, pinky_animator.getFrame() ],
-    [ inky, inky_animator.getFrame() ],
-    [ clyde, clyde_animator.getFrame() ],
-    
-    [ wall_2a,   bitmap `
+    [background, bitmap `
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000`],
+
+    [blinky, blinky_animator.getFrame()],
+    [pinky, pinky_animator.getFrame()],
+    [inky, inky_animator.getFrame()],
+    [clyde, clyde_animator.getFrame()],
+
+    [wall_2a, bitmap `
 ........55555555
 ........55555555
 ....5555........
@@ -647,7 +648,7 @@ function CustomSetLegend(){
 55....55........
 55....55........
 55....55........`, ],
-    [ wall_2b,   bitmap `
+    [wall_2b, bitmap `
 55555555........
 55555555........
 ........5555....
@@ -664,7 +665,7 @@ function CustomSetLegend(){
 ........55....55
 ........55....55
 ........55....55`, ],
-    [ wall_2c,   bitmap `
+    [wall_2c, bitmap `
 ........55....55
 ........55....55
 ........55....55
@@ -681,7 +682,7 @@ function CustomSetLegend(){
 ........5555....
 55555555........
 55555555........`, ],
-    [ wall_2d,   bitmap `
+    [wall_2d, bitmap `
 55....55........
 55....55........
 55....55........
@@ -698,7 +699,7 @@ function CustomSetLegend(){
 ....5555........
 ........55555555
 ........55555555`, ],
-    [ wall_2e,   bitmap `
+    [wall_2e, bitmap `
 5555555555555555
 5555555555555555
 ................
@@ -715,7 +716,7 @@ function CustomSetLegend(){
 ................
 ................
 ................`, ],
-    [ wall_2f,   bitmap `
+    [wall_2f, bitmap `
 55....55........
 55....55........
 55....55........
@@ -732,7 +733,7 @@ function CustomSetLegend(){
 55....55........
 55....55........
 55....55........`, ],
-    [ wall_2g,   bitmap `
+    [wall_2g, bitmap `
 ................
 ................
 ................
@@ -749,7 +750,7 @@ function CustomSetLegend(){
 ................
 5555555555555555
 5555555555555555`, ],
-    [ wall_2h,   bitmap `
+    [wall_2h, bitmap `
 ........55....55
 ........55....55
 ........55....55
@@ -766,7 +767,7 @@ function CustomSetLegend(){
 ........55....55
 ........55....55
 ........55....55`, ],
-    [ wall_2i,   bitmap `
+    [wall_2i, bitmap `
 ................
 ................
 ................
@@ -783,7 +784,7 @@ function CustomSetLegend(){
 ......55........
 ......55........
 ......55........`, ],
-    [ wall_2j,   bitmap `
+    [wall_2j, bitmap `
 ......55........
 ......55........
 ......55........
@@ -800,7 +801,7 @@ function CustomSetLegend(){
 ................
 ................
 ................`, ],
-    [ wall_2k,   bitmap `
+    [wall_2k, bitmap `
 ........55......
 ........55......
 ........55......
@@ -817,7 +818,7 @@ function CustomSetLegend(){
 ................
 ................
 ................`, ],
-    [ wall_2l,   bitmap `
+    [wall_2l, bitmap `
 ................
 ................
 ................
@@ -834,7 +835,7 @@ function CustomSetLegend(){
 ........55......
 ........55......
 ........55......`, ],
-    [ wall_2m,   bitmap `
+    [wall_2m, bitmap `
 ........55....55
 ........55....55
 ........55....55
@@ -851,7 +852,7 @@ function CustomSetLegend(){
 ..............55
 ..............55
 ..............55`, ],
-    [ wall_2n,   bitmap `
+    [wall_2n, bitmap `
 55....55........
 55....55........
 55....55........
@@ -868,7 +869,7 @@ function CustomSetLegend(){
 55..............
 55..............
 55..............`, ],
-    [ wall_2o,   bitmap `
+    [wall_2o, bitmap `
 55..............
 55..............
 55..............
@@ -885,7 +886,7 @@ function CustomSetLegend(){
 55....55........
 55....55........
 55....55........`, ],
-    [ wall_2p,   bitmap `
+    [wall_2p, bitmap `
 5555555555555555
 5555555555555555
 ................
@@ -902,7 +903,7 @@ function CustomSetLegend(){
 ........55......
 ........55......
 ........55......`, ],
-    [ wall_2q,   bitmap `
+    [wall_2q, bitmap `
 ..............55
 ..............55
 ..............55
@@ -919,7 +920,7 @@ function CustomSetLegend(){
 ........55....55
 ........55....55
 ........55....55`, ],
-    [ wall_2r,   bitmap `
+    [wall_2r, bitmap `
 5555555555555555
 5555555555555555
 ................
@@ -937,7 +938,7 @@ function CustomSetLegend(){
 ......55........
 ......55........`, ],
 
-    [ wall_1a,   bitmap `
+    [wall_1a, bitmap `
 ................
 ................
 ................
@@ -954,7 +955,7 @@ function CustomSetLegend(){
 ......55........
 ......55........
 ......55........`, ],
-    [ wall_1b,   bitmap `
+    [wall_1b, bitmap `
 ................
 ................
 ................
@@ -971,7 +972,7 @@ function CustomSetLegend(){
 ........55......
 ........55......
 ........55......`, ],
-    [ wall_1c,   bitmap `
+    [wall_1c, bitmap `
 ........55......
 ........55......
 ........55......
@@ -988,7 +989,7 @@ function CustomSetLegend(){
 ................
 ................
 ................`, ],
-    [ wall_1d,   bitmap `
+    [wall_1d, bitmap `
 ......55........
 ......55........
 ......55........
@@ -1005,7 +1006,7 @@ function CustomSetLegend(){
 ................
 ................
 ................`, ],
-    [ wall_1e,   bitmap `
+    [wall_1e, bitmap `
 ................
 ................
 ................
@@ -1022,7 +1023,7 @@ function CustomSetLegend(){
 ................
 ................
 ................`, ],
-    [ wall_1f,   bitmap `
+    [wall_1f, bitmap `
 ......55........
 ......55........
 ......55........
@@ -1039,7 +1040,7 @@ function CustomSetLegend(){
 ......55........
 ......55........
 ......55........`, ],
-    [ wall_1g,   bitmap `
+    [wall_1g, bitmap `
 ................
 ................
 ................
@@ -1056,7 +1057,7 @@ function CustomSetLegend(){
 ................
 ................
 ................`, ],
-    [ wall_1h,   bitmap `
+    [wall_1h, bitmap `
 ........55......
 ........55......
 ........55......
@@ -1074,7 +1075,7 @@ function CustomSetLegend(){
 ........55......
 ........55......`, ],
 
-    [ wall_3a,   bitmap `
+    [wall_3a, bitmap `
 55....55........
 55....55........
 ......55........
@@ -1091,7 +1092,7 @@ function CustomSetLegend(){
 ................
 ................
 ................`, ],
-    [ wall_3b,   bitmap `
+    [wall_3b, bitmap `
 ........55....55
 ........55....55
 ........55......
@@ -1108,7 +1109,7 @@ function CustomSetLegend(){
 ................
 ................
 ................`, ],
-    [ wall_3c,   bitmap `
+    [wall_3c, bitmap `
 ................
 ................
 ................
@@ -1125,7 +1126,7 @@ function CustomSetLegend(){
 ........55......
 ........55....55
 ........55....55`, ],
-    [ wall_3d,   bitmap `
+    [wall_3d, bitmap `
 ................
 ................
 ................
@@ -1142,7 +1143,7 @@ function CustomSetLegend(){
 ......55........
 55....55........
 55....55........`, ],
-    [ wall_3e,   bitmap `
+    [wall_3e, bitmap `
 ................
 ................
 ................
@@ -1159,7 +1160,7 @@ function CustomSetLegend(){
 5588888888888888
 55..............
 55..............`, ],
-    [ wall_3f,   bitmap `
+    [wall_3f, bitmap `
 ................
 ................
 ................
@@ -1200,7 +1201,7 @@ eeeeej3po.h......f.po3keeeee
 ......3...h......f.1.3......
 gggggi3mn.h......f.mn3lggggg
 .....f3rt.6eeeeee5.rt3h.....
-.....f3rt..........rt3h.....
+.....f3rt-.........rt3h.....
 .....f3rt.mqqqqqqn.rt3h.....
 aeeeej3po.pssilsso.po3keeeeb
 f333333333333rt333333333333h
@@ -1215,55 +1216,56 @@ f3psssssssso3po3psssssssso3h
 f33333333333333333333333333h
 dggggggggggggggggggggggggggc`;
 var world_sprig_size = map `
-......................
-......................
-......................
-....aeeeb.............
-....f...h.....mqn.....
-..aej...keb...r.t.....
-..dgi...lgc...pso.....
-....f...h.............
-....dgggc.............
-......................
-......................`;
+................
+lggggggggggggggi
+h..............f
+h..............f
+kb............aj
+gc....1.......dg
+................
+eb............ae
+lc............di
+h..............f
+h_.............f
+keeeeeeeeeeeeeej`;
 
 setMap(world_og_game_size)
 setBackground(background);
 
 // Set all walls as solid 2a-2r and 1a-1h
-setSolids([ 
-  packman, 
-  wall_2a, 
-  wall_2b, 
-  wall_2c, 
-  wall_2d, 
-  wall_2e, 
-  wall_2f, 
-  wall_2g, 
-  wall_2h, 
-  wall_2i, 
-  wall_2j, 
-  wall_2k, 
-  wall_2l, 
-  wall_2m, 
-  wall_2n, 
-  wall_2o, 
-  wall_2p, 
-  wall_2q, 
-  wall_2r, 
-  wall_1a, 
-  wall_1b, 
-  wall_1c, 
-  wall_1d, 
-  wall_1e, 
-  wall_1f, 
-  wall_1g, 
-  wall_1h, 
-  wall_3a, 
-  wall_3b, 
-  wall_3c, 
-  wall_3d, 
-  wall_3e, 
+setSolids([
+  packman,
+  wall_2a,
+  wall_2b,
+  wall_2c,
+  wall_2d,
+  wall_2e,
+  wall_2f,
+  wall_2g,
+  wall_2h,
+  wall_2i,
+  wall_2j,
+  wall_2k,
+  wall_2l,
+  wall_2m,
+  wall_2n,
+  wall_2o,
+  wall_2p,
+  wall_2q,
+  wall_2r,
+  wall_1a,
+  wall_1b,
+  wall_1c,
+  wall_1d,
+  wall_1e,
+  wall_1f,
+  wall_1g,
+  wall_1h,
+  wall_3a,
+  wall_3b,
+  wall_3c,
+  wall_3d,
+  wall_3e,
   wall_3f
 ]);
 
@@ -1295,21 +1297,22 @@ onInput("j", () => {
 
 // Attempt to turn packman, pass remove qeue, fail qeue it up
 var queued_direction = 3;
-function PackmanTryTurn(){
-  if(queued_direction < 0){ return; }
-  
+
+function PackmanTryTurn() {
+  if (queued_direction < 0) { return; }
+
   var x_offset = 0;
   var y_offset = 0;
-  
-  if(queued_direction == 0){ y_offset = -1; }
-  if(queued_direction == 1){ y_offset = 1; }
-  if(queued_direction == 2){ x_offset = -1; }
-  if(queued_direction == 3){ x_offset = 1; }
-  
+
+  if (queued_direction == 0) { y_offset = -1; }
+  if (queued_direction == 1) { y_offset = 1; }
+  if (queued_direction == 2) { x_offset = -1; }
+  if (queued_direction == 3) { x_offset = 1; }
+
   var can_turn = !(hasWall(getFirst(packman).x + x_offset, getFirst(packman).y + y_offset));
-  
-  
-  if(can_turn){
+
+
+  if (can_turn) {
     current_direction = queued_direction;
     packman_animator.setAnimation(current_direction);
     queued_direction = -1;
@@ -1318,19 +1321,19 @@ function PackmanTryTurn(){
 
 // Check if packman can turn.
 
-function hasWall(x, y){
+function hasWall(x, y) {
   var tiles = getTile(x, y);
-  
+
   var has_pellet = false;
   tiles.forEach(sprite => {
-    if(sprite.type == pellet || sprite.type == power_pellet){ 
-      has_pellet = true; 
+    if (sprite.type == pellet || sprite.type == power_pellet) {
+      has_pellet = true;
     }
   });
 
   var isWall = !(has_pellet || tiles.length == 0);
 
-  return  isWall;
+  return isWall;
 }
 
 // Score
@@ -1338,38 +1341,39 @@ var score = 0;
 
 // TICKER FOR GAME LOOP
 const game_tick_speed = 500;
+
 function game_ticker() {
   PackmanTryTurn();
-  
+
   // Move
-  if(current_direction == 0){
+  if (current_direction == 0) {
     getFirst(packman).y -= 1;
   }
 
-  if(current_direction == 1){
+  if (current_direction == 1) {
     getFirst(packman).y += 1;
   }
 
-  if(current_direction == 2){
+  if (current_direction == 2) {
     getFirst(packman).x -= 1;
   }
 
-  if(current_direction == 3){
+  if (current_direction == 3) {
     getFirst(packman).x += 1;
   }
 
   // Check if at portal
-  if(getFirst(packman).x == 27){
+  if (getFirst(packman).x == 27) {
     clearTile(27, 17);
     addSprite(1, 17, packman);
   }
-  if(getFirst(packman).x == 0){
+  if (getFirst(packman).x == 0) {
     clearTile(0, 17);
     addSprite(26, 17, packman);
   }
 
   var packman_pellet_tiles = tilesWith(packman, pellet);
-  if(packman_pellet_tiles.length > 0){
+  if (packman_pellet_tiles.length > 0) {
     var tile_x = packman_pellet_tiles[0][0].x;
     var tile_y = packman_pellet_tiles[0][0].y;
 
@@ -1383,7 +1387,7 @@ function game_ticker() {
   addText("Score: " + score, { x: 0, y: 0, color: color`2` })
 
   DoBlinky();
-  // DoPinky();
+  DoPinky();
   // DoInky();
   // DoClyde();
 }
@@ -1391,7 +1395,7 @@ setInterval(game_ticker, game_tick_speed);
 
 // GHOST FUNCTIONS
 
-function DoBlinky(){
+function DoBlinky() {
   // Set Target
   blinky_ghost.setTarget(new Target(getFirst(packman).x, getFirst(packman).y));
 
@@ -1402,17 +1406,17 @@ function DoBlinky(){
   var can_go_right = true;
 
   const direction = blinky_ghost.direction; // 0=up, 1=down,= 2=left, 3=right
-  if(direction == 0){ can_go_down = false; }
-  if(direction == 1){ can_go_up = false; }
-  if(direction == 2){ can_go_right = false; }
-  if(direction == 3){ can_go_left = false; }
+  if (direction == 0) { can_go_down = false; }
+  if (direction == 1) { can_go_up = false; }
+  if (direction == 2) { can_go_right = false; }
+  if (direction == 3) { can_go_left = false; }
 
   const blinky_ingame_object = getFirst(blinky);
 
-  if(hasWall(blinky_ingame_object.x, blinky_ingame_object.y - 1)){ can_go_up = false; } // Up
-  if(hasWall(blinky_ingame_object.x, blinky_ingame_object.y + 1)){ can_go_down = false; } // Down
-  if(hasWall(blinky_ingame_object.x - 1, blinky_ingame_object.y)){ can_go_left = false; } // Left
-  if(hasWall(blinky_ingame_object.x + 1, blinky_ingame_object.y)){ can_go_right = false; } // Right
+  if (hasWall(blinky_ingame_object.x, blinky_ingame_object.y - 1)) { can_go_up = false; } // Up
+  if (hasWall(blinky_ingame_object.x, blinky_ingame_object.y + 1)) { can_go_down = false; } // Down
+  if (hasWall(blinky_ingame_object.x - 1, blinky_ingame_object.y)) { can_go_left = false; } // Left
+  if (hasWall(blinky_ingame_object.x + 1, blinky_ingame_object.y)) { can_go_right = false; } // Right
 
   var distance_from_up = getDistance(new Target(blinky_ingame_object.x, blinky_ingame_object.y - 1), new Target(blinky_ghost.target.x, blinky_ghost.target.y));
   var distance_from_down = getDistance(new Target(blinky_ingame_object.x, blinky_ingame_object.y + 1), new Target(blinky_ghost.target.x, blinky_ghost.target.y));
@@ -1422,20 +1426,40 @@ function DoBlinky(){
   var shortest_direcion = -1;
   var shortest_direction_length = 9999;
 
-  if(can_go_up){if(distance_from_up < shortest_direction_length){ shortest_direcion = 0; shortest_direction_length = distance_from_up; }}
-  if(can_go_down){if(distance_from_down < shortest_direction_length){ shortest_direcion = 1; shortest_direction_length = distance_from_down; }}
-  if(can_go_left){if(distance_from_left < shortest_direction_length){ shortest_direcion = 2; shortest_direction_length = distance_from_left; }}
-  if(can_go_right){if(distance_from_right < shortest_direction_length){ shortest_direcion = 3; shortest_direction_length = distance_from_right; }}
+  if (can_go_up) {
+    if (distance_from_up < shortest_direction_length) {
+      shortest_direcion = 0;
+      shortest_direction_length = distance_from_up;
+    }
+  }
+  if (can_go_down) {
+    if (distance_from_down < shortest_direction_length) {
+      shortest_direcion = 1;
+      shortest_direction_length = distance_from_down;
+    }
+  }
+  if (can_go_left) {
+    if (distance_from_left < shortest_direction_length) {
+      shortest_direcion = 2;
+      shortest_direction_length = distance_from_left;
+    }
+  }
+  if (can_go_right) {
+    if (distance_from_right < shortest_direction_length) {
+      shortest_direcion = 3;
+      shortest_direction_length = distance_from_right;
+    }
+  }
 
-  if(shortest_direcion > -1){
-    if(shortest_direcion == 0){ getFirst(blinky).y -= 1; }
-    if(shortest_direcion == 1){ getFirst(blinky).y += 1; }
-    if(shortest_direcion == 2){ getFirst(blinky).x -= 1; }
-    if(shortest_direcion == 3){ getFirst(blinky).x += 1; }
-  
+  if (shortest_direcion > -1) {
+    if (shortest_direcion == 0) { getFirst(blinky).y -= 1; }
+    if (shortest_direcion == 1) { getFirst(blinky).y += 1; }
+    if (shortest_direcion == 2) { getFirst(blinky).x -= 1; }
+    if (shortest_direcion == 3) { getFirst(blinky).x += 1; }
+
     blinky_ghost.setDirection(shortest_direcion);
   }
-  
+
   console.log("--------------------------------");
   console.log("Current direction: ", direction);
   console.log("Distances: up, down, left, right.");
@@ -1446,11 +1470,86 @@ function DoBlinky(){
   console.log("Shortest direction: ", shortest_direcion);
   console.log("Shortest direction length: ", shortest_direction_length);
 }
-function DoPinky(){}
-function DoInky(){}
-function DoClyde(){}
 
-function getDistance(start, end){ // Takes in two targets to have an x and a y
+function DoPinky() {
+  const packman_ingame_object = getFirst(packman);
+  const packman_x_position = packman_ingame_object.x;
+  const packman_y_position = packman_ingame_object.y;
+
+  var target_x_position = packman_x_position;
+  var target_y_position = packman_y_position;
+
+  if (current_direction == 0) { target_y_position -= 4; } else if (current_direction == 1) { target_y_position += 4; } else if (current_direction == 2) { target_x_position -= 4; } else if (current_direction == 3) { target_x_position += 4; }
+
+  pinky_ghost.setTarget(new Target(target_x_position, target_y_position));
+
+  // Get best direction
+  var can_go_up = true;
+  var can_go_down = true;
+  var can_go_left = true;
+  var can_go_right = true;
+
+  const direction = pinky_ghost.direction; // 0=up, 1=down,= 2=left, 3=right
+  if (direction == 0) { can_go_down = false; }
+  if (direction == 1) { can_go_up = false; }
+  if (direction == 2) { can_go_right = false; }
+  if (direction == 3) { can_go_left = false; }
+
+  const pinky_ingame_object = getFirst(pinky);
+
+  if (hasWall(pinky_ingame_object.x, pinky_ingame_object.y - 1)) { can_go_up = false; } // Up
+  if (hasWall(pinky_ingame_object.x, pinky_ingame_object.y + 1)) { can_go_down = false; } // Down
+  if (hasWall(pinky_ingame_object.x - 1, pinky_ingame_object.y)) { can_go_left = false; } // Left
+  if (hasWall(pinky_ingame_object.x + 1, pinky_ingame_object.y)) { can_go_right = false; } // Right
+
+  var distance_from_up = getDistance(new Target(pinky_ingame_object.x, pinky_ingame_object.y - 1), new Target(pinky_ghost.target.x, pinky_ghost.target.y));
+  var distance_from_down = getDistance(new Target(pinky_ingame_object.x, pinky_ingame_object.y + 1), new Target(pinky_ghost.target.x, pinky_ghost.target.y));
+  var distance_from_left = getDistance(new Target(pinky_ingame_object.x - 1, pinky_ingame_object.y), new Target(pinky_ghost.target.x, pinky_ghost.target.y));
+  var distance_from_right = getDistance(new Target(pinky_ingame_object.x + 1, pinky_ingame_object.y), new Target(pinky_ghost.target.x, pinky_ghost.target.y));
+
+  var shortest_direcion = -1;
+  var shortest_direction_length = 9999;
+
+  if (can_go_up) {
+    if (distance_from_up < shortest_direction_length) {
+      shortest_direcion = 0;
+      shortest_direction_length = distance_from_up;
+    }
+  }
+  if (can_go_down) {
+    if (distance_from_down < shortest_direction_length) {
+      shortest_direcion = 1;
+      shortest_direction_length = distance_from_down;
+    }
+  }
+  if (can_go_left) {
+    if (distance_from_left < shortest_direction_length) {
+      shortest_direcion = 2;
+      shortest_direction_length = distance_from_left;
+    }
+  }
+  if (can_go_right) {
+    if (distance_from_right < shortest_direction_length) {
+      shortest_direcion = 3;
+      shortest_direction_length = distance_from_right;
+    }
+  }
+
+  if (shortest_direcion > -1) {
+    if (shortest_direcion == 0) { getFirst(pinky).y -= 1; }
+    if (shortest_direcion == 1) { getFirst(pinky).y += 1; }
+    if (shortest_direcion == 2) { getFirst(pinky).x -= 1; }
+    if (shortest_direcion == 3) { getFirst(pinky).x += 1; }
+  }
+
+  pinky_ghost.setDirection(shortest_direcion);
+}
+
+function DoInky() {}
+
+function DoClyde() {}
+
+function getDistance(start, end) { // Takes in two targets to have an x and a y
   var height = start.y - end.y;
   var width = start.x - end.x;
 
@@ -1461,12 +1560,13 @@ function getDistance(start, end){ // Takes in two targets to have an x and a y
   // console.log(height);
   // console.log(width);
   // console.log(hypotenuse);
-  
+
   return hypotenuse;
 }
 
 // TICKER SPRITE ANIMATIONS
 const sprite_tick_speed = 250;
+
 function sprite_ticker() {
   CustomSetLegend();
   all_animators.forEach((animator) => {
@@ -1474,19 +1574,3 @@ function sprite_ticker() {
   })
 }
 setInterval(sprite_ticker, sprite_tick_speed);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
