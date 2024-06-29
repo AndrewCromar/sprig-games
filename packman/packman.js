@@ -1396,79 +1396,10 @@ setInterval(game_ticker, game_tick_speed);
 // GHOST FUNCTIONS
 
 function DoBlinky() {
-  // Set Target
   blinky_ghost.setTarget(new Target(getFirst(packman).x, getFirst(packman).y));
 
-  // Get best direction
-  var can_go_up = true;
-  var can_go_down = true;
-  var can_go_left = true;
-  var can_go_right = true;
-
-  const direction = blinky_ghost.direction; // 0=up, 1=down,= 2=left, 3=right
-  if (direction == 0) { can_go_down = false; }
-  if (direction == 1) { can_go_up = false; }
-  if (direction == 2) { can_go_right = false; }
-  if (direction == 3) { can_go_left = false; }
-
   const blinky_ingame_object = getFirst(blinky);
-
-  if (hasWall(blinky_ingame_object.x, blinky_ingame_object.y - 1)) { can_go_up = false; } // Up
-  if (hasWall(blinky_ingame_object.x, blinky_ingame_object.y + 1)) { can_go_down = false; } // Down
-  if (hasWall(blinky_ingame_object.x - 1, blinky_ingame_object.y)) { can_go_left = false; } // Left
-  if (hasWall(blinky_ingame_object.x + 1, blinky_ingame_object.y)) { can_go_right = false; } // Right
-
-  var distance_from_up = getDistance(new Target(blinky_ingame_object.x, blinky_ingame_object.y - 1), new Target(blinky_ghost.target.x, blinky_ghost.target.y));
-  var distance_from_down = getDistance(new Target(blinky_ingame_object.x, blinky_ingame_object.y + 1), new Target(blinky_ghost.target.x, blinky_ghost.target.y));
-  var distance_from_left = getDistance(new Target(blinky_ingame_object.x - 1, blinky_ingame_object.y), new Target(blinky_ghost.target.x, blinky_ghost.target.y));
-  var distance_from_right = getDistance(new Target(blinky_ingame_object.x + 1, blinky_ingame_object.y), new Target(blinky_ghost.target.x, blinky_ghost.target.y));
-
-  var shortest_direcion = -1;
-  var shortest_direction_length = 9999;
-
-  if (can_go_up) {
-    if (distance_from_up < shortest_direction_length) {
-      shortest_direcion = 0;
-      shortest_direction_length = distance_from_up;
-    }
-  }
-  if (can_go_down) {
-    if (distance_from_down < shortest_direction_length) {
-      shortest_direcion = 1;
-      shortest_direction_length = distance_from_down;
-    }
-  }
-  if (can_go_left) {
-    if (distance_from_left < shortest_direction_length) {
-      shortest_direcion = 2;
-      shortest_direction_length = distance_from_left;
-    }
-  }
-  if (can_go_right) {
-    if (distance_from_right < shortest_direction_length) {
-      shortest_direcion = 3;
-      shortest_direction_length = distance_from_right;
-    }
-  }
-
-  if (shortest_direcion > -1) {
-    if (shortest_direcion == 0) { getFirst(blinky).y -= 1; }
-    if (shortest_direcion == 1) { getFirst(blinky).y += 1; }
-    if (shortest_direcion == 2) { getFirst(blinky).x -= 1; }
-    if (shortest_direcion == 3) { getFirst(blinky).x += 1; }
-
-    blinky_ghost.setDirection(shortest_direcion);
-  }
-
-  console.log("--------------------------------");
-  console.log("Current direction: ", direction);
-  console.log("Distances: up, down, left, right.");
-  console.log(distance_from_up);
-  console.log(distance_from_down);
-  console.log(distance_from_left);
-  console.log(distance_from_right);
-  console.log("Shortest direction: ", shortest_direcion);
-  console.log("Shortest direction length: ", shortest_direction_length);
+  SetGhostBestDirection(blinky_ghost, blinky_ingame_object);
 }
 
 function DoPinky() {
@@ -1483,71 +1414,73 @@ function DoPinky() {
 
   pinky_ghost.setTarget(new Target(target_x_position, target_y_position));
 
-  // Get best direction
-  var can_go_up = true;
-  var can_go_down = true;
-  var can_go_left = true;
-  var can_go_right = true;
-
-  const direction = pinky_ghost.direction; // 0=up, 1=down,= 2=left, 3=right
-  if (direction == 0) { can_go_down = false; }
-  if (direction == 1) { can_go_up = false; }
-  if (direction == 2) { can_go_right = false; }
-  if (direction == 3) { can_go_left = false; }
-
   const pinky_ingame_object = getFirst(pinky);
-
-  if (hasWall(pinky_ingame_object.x, pinky_ingame_object.y - 1)) { can_go_up = false; } // Up
-  if (hasWall(pinky_ingame_object.x, pinky_ingame_object.y + 1)) { can_go_down = false; } // Down
-  if (hasWall(pinky_ingame_object.x - 1, pinky_ingame_object.y)) { can_go_left = false; } // Left
-  if (hasWall(pinky_ingame_object.x + 1, pinky_ingame_object.y)) { can_go_right = false; } // Right
-
-  var distance_from_up = getDistance(new Target(pinky_ingame_object.x, pinky_ingame_object.y - 1), new Target(pinky_ghost.target.x, pinky_ghost.target.y));
-  var distance_from_down = getDistance(new Target(pinky_ingame_object.x, pinky_ingame_object.y + 1), new Target(pinky_ghost.target.x, pinky_ghost.target.y));
-  var distance_from_left = getDistance(new Target(pinky_ingame_object.x - 1, pinky_ingame_object.y), new Target(pinky_ghost.target.x, pinky_ghost.target.y));
-  var distance_from_right = getDistance(new Target(pinky_ingame_object.x + 1, pinky_ingame_object.y), new Target(pinky_ghost.target.x, pinky_ghost.target.y));
-
-  var shortest_direcion = -1;
-  var shortest_direction_length = 9999;
-
-  if (can_go_up) {
-    if (distance_from_up < shortest_direction_length) {
-      shortest_direcion = 0;
-      shortest_direction_length = distance_from_up;
-    }
-  }
-  if (can_go_down) {
-    if (distance_from_down < shortest_direction_length) {
-      shortest_direcion = 1;
-      shortest_direction_length = distance_from_down;
-    }
-  }
-  if (can_go_left) {
-    if (distance_from_left < shortest_direction_length) {
-      shortest_direcion = 2;
-      shortest_direction_length = distance_from_left;
-    }
-  }
-  if (can_go_right) {
-    if (distance_from_right < shortest_direction_length) {
-      shortest_direcion = 3;
-      shortest_direction_length = distance_from_right;
-    }
-  }
-
-  if (shortest_direcion > -1) {
-    if (shortest_direcion == 0) { getFirst(pinky).y -= 1; }
-    if (shortest_direcion == 1) { getFirst(pinky).y += 1; }
-    if (shortest_direcion == 2) { getFirst(pinky).x -= 1; }
-    if (shortest_direcion == 3) { getFirst(pinky).x += 1; }
-  }
-
-  pinky_ghost.setDirection(shortest_direcion);
+  SetGhostBestDirection(pinky_ghost, pinky_ingame_object);
 }
 
 function DoInky() {}
 
 function DoClyde() {}
+
+function SetGhostBestDirection(ghost, ghost_object) {
+    var can_go_up = true;
+    var can_go_down = true;
+    var can_go_left = true;
+    var can_go_right = true;
+
+    const direction = ghost.direction; // 0=up, 1=down,= 2=left, 3=right
+    if (direction == 0) { can_go_down = false; }
+    if (direction == 1) { can_go_up = false; }
+    if (direction == 2) { can_go_right = false; }
+    if (direction == 3) { can_go_left = false; }
+
+    if (hasWall(ghost_object.x, ghost_object.y - 1)) { can_go_up = false; } // Up
+    if (hasWall(ghost_object.x, ghost_object.y + 1)) { can_go_down = false; } // Down
+    if (hasWall(ghost_object.x - 1, ghost_object.y)) { can_go_left = false; } // Left
+    if (hasWall(ghost_object.x + 1, ghost_object.y)) { can_go_right = false; } // Right
+
+    var distance_from_up = getDistance(new Target(ghost_object.x, ghost_object.y - 1), new Target(ghost.target.x, ghost.target.y));
+    var distance_from_down = getDistance(new Target(ghost_object.x, ghost_object.y + 1), new Target(ghost.target.x, ghost.target.y));
+    var distance_from_left = getDistance(new Target(ghost_object.x - 1, ghost_object.y), new Target(ghost.target.x, ghost.target.y));
+    var distance_from_right = getDistance(new Target(ghost_object.x + 1, ghost_object.y), new Target(ghost.target.x, ghost.target.y));
+
+    var shortest_direcion = -1;
+    var shortest_direction_length = 9999;
+
+    if (can_go_up) {
+        if (distance_from_up < shortest_direction_length) {
+            shortest_direcion = 0;
+            shortest_direction_length = distance_from_up;
+        }
+    }
+    if (can_go_down) {
+        if (distance_from_down < shortest_direction_length) {
+            shortest_direcion = 1;
+            shortest_direction_length = distance_from_down;
+        }
+    }
+    if (can_go_left) {
+        if (distance_from_left < shortest_direction_length) {
+            shortest_direcion = 2;
+            shortest_direction_length = distance_from_left;
+        }
+    }
+    if (can_go_right) {
+        if (distance_from_right < shortest_direction_length) {
+            shortest_direcion = 3;
+            shortest_direction_length = distance_from_right;
+        }
+    }
+
+    if (shortest_direcion > -1) {
+        if (shortest_direcion == 0) { ghost_object.y -= 1; }
+        if (shortest_direcion == 1) { ghost_object.y += 1; }
+        if (shortest_direcion == 2) { ghost_object.x -= 1; }
+        if (shortest_direcion == 3) { ghost_object.x += 1; }
+
+        ghost.setDirection(shortest_direcion);
+    }
+}
 
 function getDistance(start, end) { // Takes in two targets to have an x and a y
   var height = start.y - end.y;
