@@ -1207,7 +1207,7 @@ aeeeej3po.pssilsso.po3keeeeb
 f333333333333rt333333333333h
 f3mqqn3mqqqn3rt3mqqqn3mqqn3h
 f3psit3pssso3po3pssso3rlso3h
-f433rt3333333..3333333rt334h
+f433rt3333333..3+33333rt334h
 vqn3rt3mn3mqqqqqqn3mn3rt3mqu
 wso3po3rt3pssilsso3rt3po3psy
 f333333rt3333rt3333rt333333h
@@ -1231,6 +1231,17 @@ keeeeeeeeeeeeeej`;
 
 setMap(world_og_game_size)
 setBackground(background);
+
+const map_width = GetWorldWidthHeight(world_og_game_size).x;
+const map_height = GetWorldWidthHeight(world_og_game_size).y;
+
+function GetWorldWidthHeight(map) {
+  console.log(map);
+  const lines = map.split('\n');
+  const height = lines.length;
+  const width = lines[0].length;
+  return { x: width, y: height };
+}
 
 // Set all walls as solid 2a-2r and 1a-1h
 setSolids([
@@ -1388,7 +1399,7 @@ function game_ticker() {
 
   DoBlinky();
   DoPinky();
-  // DoInky();
+  DoInky();
   // DoClyde();
 }
 setInterval(game_ticker, game_tick_speed);
@@ -1418,7 +1429,39 @@ function DoPinky() {
   SetGhostBestDirection(pinky_ghost, pinky_ingame_object);
 }
 
-function DoInky() {}
+function DoInky() {
+    const packman_ingame_object = getFirst(packman);
+    const packman_x_position = packman_ingame_object.x;
+    const packman_y_position = packman_ingame_object.y;
+
+    var infront_x_position = packman_x_position;
+    var infront_y_position = packman_y_position;
+
+    if (current_direction == 0) { infront_y_position -= 2; } else if (current_direction == 1) { infront_y_position += 2; } else if (current_direction == 2) { infront_x_position -= 2; } else if (current_direction == 3) { infront_x_position += 2; }
+
+    const blinky_x_position = getFirst(blinky).x;
+    const blinky_y_position = getFirst(blinky).y;
+
+    const vector_x = infront_x_position - blinky_x_position;
+    const vector_y = infront_y_position - blinky_y_position;
+
+    const multiplied_vector_x = vector_x * 2;
+    const multiplied_vector_y = vector_y * 2;
+
+    const new_x_position = blinky_x_position + multiplied_vector_x;
+    const new_y_position = blinky_y_position + multiplied_vector_y;
+
+    const rounded_x_position = Math.round(new_x_position);
+    const rounded_y_position = Math.round(new_y_position);
+
+    const clamped_x_position = Math.max(0, Math.min(map_width - 1, rounded_x_position));
+    const clamped_y_position = Math.max(0, Math.min(map_height - 1, rounded_y_position));
+
+    inky_ghost.setTarget(new Target(clamped_x_position, clamped_y_position));
+
+    const inky_ingame_object = getFirst(inky);
+    SetGhostBestDirection(inky_ghost, inky_ingame_object);
+}
 
 function DoClyde() {}
 
