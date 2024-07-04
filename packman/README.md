@@ -9,7 +9,7 @@ WASD, move Pacman.
 ## Upcoming Features
 - Clyde logic.
 - Menu.
-- Eating bit pellots.
+- Eating big pellots.
   - Ghost scared mode and go home mode.
 
 ## Known Issues
